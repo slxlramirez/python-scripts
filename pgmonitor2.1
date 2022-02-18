@@ -1,0 +1,98 @@
+#!/usr/bin/python
+
+import sys
+import os.path
+import logging
+import json
+
+msOptions= ['probeSipFlowDataChannel','privateSipEventChannel','flowDataChannel','privateFlowEventChannel']
+_str = ''
+
+def runCmd(cmd):
+    try:
+        os.system(cmd)
+    except:
+        logging.exception("Logger command failed...")
+
+def syslogData(ma, mc):
+    cmd = 'echo "{\\\"messages-added\\\":\\\"' + str(ma) + '\\\",\\\"message-count\\\":\\\"' + str(mc) + '\\\"}" > /dev/ud
+p/172.16.2.34/514'
+    return cmd
+
+def checkArgs(args):
+    if len(args) == 2:
+       return 1
+    else:
+       return 0
+
+def whichCmd(app):
+    global msString
+
+    if app == 'probeSipFlowDataChannel':.0.1:9990/management --he
+        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0ader \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\" , \"address\":[\"deployment\",\"mgmt-ear.ear\",\"subdeployment\",\"mgmt-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-topic\", \"probeSipFlowDataChannel\"], \"json.pretty\":1}\''
+        appendString(cmd,'probeSipFlowDataChannel-ma','probeSipFlowDataChannel-mc')
+
+    if app == 'privateSipEventChannel':
+        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\" , \"address\":[\"deployment\",\"analytics-ear.ear\",\"subdeployment\",\"analytics-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-queue\", \"privateSipEventChannel\"], \"json.pretty\":1}\''
+        appendString(cmd,'privateSipEventChannel-ma','privateSipEventChannel-mc')
+
+    if app == 'flowDataChannel':
+        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\" , \"address\":[\"deployment\",\"mgmt-ear.ear\",\"subdeployment\",\"mgmt-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-topic\", \"flowDataChannel\"], \"json.pretty\":1}\''
+        appendString(cmd,'flowDataChannel-ma','flowDataChannel-mc')
+    if app == 'privateFlowEventChannel':
+        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: applicatio
+n/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\" , \"address\":[\"deployment\",\"analytics-ear
+.ear\",\"subdeployment\",\"analytics-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-que
+ue\", \"privateFlowEventChannel\"], \"json.pretty\":1}\''
+        appendString(cmd,'privateFlowEventChannel-ma','privateFlowEventChannel-mc')
+
+    if app == 'sip':
+        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: applicatio
+n/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\" , \"address\":[\"deployment\",\"sniffer-uc-ea
+r.ear\",\"subdeployment\",\"sniffer-uc-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-t
+opic\", \"probeSipFlowTopic\"], \"json.pretty\":1}\''
+        appendString(cmd,'messages-added','message-count')
+
+def appendString(cmd, _str1, _str2):
+
+        global _str
+
+        try:
+            data = json.loads(os.popen(cmd).read())
+            ma = data['result']['messages-added']
+            mc = data['result']['message-count']
+            if len(_str) == 0:
+                _str = '\\\"' + _str1 + '\\\":\\\"' + str(ma) + '\\\",\\\"' + _str2 + '\\\":\\\"' + str(mc) + '\\\"'
+            else:
+                _str = _str + ',' + '\\\"' + _str1 + '\\\":\\\"' + str(ma) + '\\\",\\\"' + _str2 + '\\\":\\\"' + str(mc) +
+ '\\\"'
+        except:
+            print('Tried to execute:' + cmd)
+            print('Perhaps you passed in an application on a server not running that app?')
+
+def main():
+    #print 'Number of arguments:', len(sys.argv), 'arguments.'
+    #print 'Argument List:', str(sys.argv)
+
+    a = checkArgs(sys.argv)
+    global _str
+
+    if a:
+        if sys.argv[1] == 'enum':
+            print('enum called')
+        elif sys.argv[1] == 'sip':
+            whichCmd('sip')
+            _str = 'echo "{' + _str + '}" > /dev/udp/172.16.2.34/514'
+            #print(_str)
+            runCmd(_str)
+        elif sys.argv[1] == 'ms':
+            for x in msOptions:
+                whichCmd(x)
+            _str = 'echo "{' + _str + '}" > /dev/udp/172.16.2.34/514'
+            #print(_str)
+            runCmd(str)
+        else:
+            print('failed')
+if __name__ == "__main__":
+    main()
+
