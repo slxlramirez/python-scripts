@@ -40,17 +40,11 @@ def whichCmd(app):
         cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\" , \"address\":[\"deployment\",\"mgmt-ear.ear\",\"subdeployment\",\"mgmt-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-topic\", \"flowDataChannel\"], \"json.pretty\":1}\''
         appendString(cmd,'flowDataChannel-ma','flowDataChannel-mc')
     if app == 'privateFlowEventChannel':
-        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: applicatio
-n/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\" , \"address\":[\"deployment\",\"analytics-ear
-.ear\",\"subdeployment\",\"analytics-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-que
-ue\", \"privateFlowEventChannel\"], \"json.pretty\":1}\''
+        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\" , \"address\":[\"deployment\",\"analytics-ear.ear\",\"subdeployment\",\"analytics-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-queue\", \"privateFlowEventChannel\"], \"json.pretty\":1}\''
         appendString(cmd,'privateFlowEventChannel-ma','privateFlowEventChannel-mc')
 
     if app == 'sip':
-        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: applicatio
-n/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\" , \"address\":[\"deployment\",\"sniffer-uc-ea
-r.ear\",\"subdeployment\",\"sniffer-uc-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-t
-opic\", \"probeSipFlowTopic\"], \"json.pretty\":1}\''
+        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\" , \"address\":[\"deployment\",\"sniffer-uc-ear.ear\",\"subdeployment\",\"sniffer-uc-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-topic\", \"probeSipFlowTopic\"], \"json.pretty\":1}\''
         appendString(cmd,'messages-added','message-count')
 
 def appendString(cmd, _str1, _str2):
