@@ -28,38 +28,33 @@ def whichCmd(app):
     global msString
 
     if app == 'probeSipFlowDataChannel':
-        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\
-" , \"address\":[\"deployment\",\"mgmt-ear.ear\",\"subdeployment\",\"mgmt-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-topic\", \"probeSipFlowDataChannel\"], \"
-json.pretty\":1}\''
+        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\" , \"address\":[\"deployment\",\"mgm
+t-ear.ear\",\"subdeployment\",\"mgmt-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-topic\", \"probeSipFlowDataChannel\"], \"json.pretty\":1}\''
         appendString(cmd,'probeSipFlowDataChannel-ma','probeSipFlowDataChannel-mc')
 
     if app == 'privateSipEventChannel':
-        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\
-" , \"address\":[\"deployment\",\"analytics-ear.ear\",\"subdeployment\",\"analytics-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-queue\", \"privateSipEventChann
-el\"], \"json.pretty\":1}\''
+        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\" , \"address\":[\"deployment\",\"ana
+lytics-ear.ear\",\"subdeployment\",\"analytics-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-queue\", \"privateSipEventChannel\"], \"json.pretty\":1}\''
         appendString(cmd,'privateSipEventChannel-ma','privateSipEventChannel-mc')
 
     if app == 'flowDataChannel':
-        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\
-" , \"address\":[\"deployment\",\"mgmt-ear.ear\",\"subdeployment\",\"mgmt-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-topic\", \"flowDataChannel\"], \"json.pre
-tty\":1}\''
+        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\" , \"address\":[\"deployment\",\"mgm
+t-ear.ear\",\"subdeployment\",\"mgmt-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-topic\", \"flowDataChannel\"], \"json.pretty\":1}\''
         appendString(cmd,'flowDataChannel-ma','flowDataChannel-mc')
 
     if app == 'privateFlowEventChannel':
-        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\
-" , \"address\":[\"deployment\",\"analytics-ear.ear\",\"subdeployment\",\"analytics-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-queue\", \"privateFlowEventChan
-nel\"], \"json.pretty\":1}\''
+        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\" , \"address\":[\"deployment\",\"ana
+lytics-ear.ear\",\"subdeployment\",\"analytics-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-queue\", \"privateFlowEventChannel\"], \"json.pretty\":1}\''
         appendString(cmd,'privateFlowEventChannel-ma','privateFlowEventChannel-mc')
 
     if app == 'sip':
-        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\
-" , \"address\":[\"deployment\",\"sniffer-uc-ear.ear\",\"subdeployment\",\"sniffer-uc-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-topic\", \"probeSipFlowTopic\
-"], \"json.pretty\":1}\''
+        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\" , \"address\":[\"deployment\",\"sni
+ffer-uc-ear.ear\",\"subdeployment\",\"sniffer-uc-beans.jar\", \"subsystem\", \"messaging\", \"hornetq-server\", \"default\", \"jms-topic\", \"probeSipFlowTopic\"], \"json.pretty\":1}\''
         appendString(cmd,'messages-added','message-count')
 
     if app == 'heap':
-        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\
-" , \"address\":[\"core-service\",\"platform-mbean\",\"type\",\"memory\"], \"json.pretty\":1}\''
+        cmd = 'curl --digest -s http://admin:SecureLogix1%21@127.0.0.1:9990/management --header \"Content-Type: application/json\" -d \'{\"operation\":\"read-resource\", \"include-runtime\":\"true\" , \"address\":[\"core-service\",\"p
+latform-mbean\",\"type\",\"memory\"], \"json.pretty\":1}\''
         runHeapCommand(cmd,'heap-used','heap-max','heap-committed')
 
 def runHeapCommand(cmd, _str1, _str2, _str3):
